@@ -1,4 +1,4 @@
-name: Docker CI Pipeline
+name: Docker CI/CD Pipeline
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  docker-build:
+  docker-build-push:
 
     runs-on: ubuntu-latest
 
@@ -16,8 +16,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
       - name: Build Frontend Image
-        run: docker build -t frontend ./frontend
+        run: docker build -t sdka1/frontend-app ./frontend
 
       - name: Build Backend Image
-        run: docker build -t backend ./backend
+        run: docker build -t sdka1/backend-app ./backend
+
+      - name: Push Frontend Image
+        run: docker push sdka1/frontend-app
+
+      - name: Push Backend Image
+        run: docker push sdka1/backend-app
