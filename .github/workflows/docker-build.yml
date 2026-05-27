@@ -23,13 +23,13 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build Frontend Image
-        run: docker build -t sdka1/frontend-app ./frontend
+        run: docker build -t sdk2022/frontend-app ./frontend
 
       - name: Build Backend Image
-        run: docker build -t sdka1/backend-app ./backend
+        run: docker build -t sdk2022/backend-app ./backend
 
       - name: Push Frontend Image
-        run: docker push sdka1/frontend-app
+        run: docker push sdk2022/frontend-app
 
       - name: Push Backend Image
-        run: docker push sdka1/backend-app
+        run: docker push sdk2022/backend-app
