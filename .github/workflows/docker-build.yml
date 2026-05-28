@@ -33,3 +33,5 @@ jobs:
 
       - name: Push Backend Image
         run: docker push sdk2022/backend-app
+
+# Retrying pipeline after Docker token update
